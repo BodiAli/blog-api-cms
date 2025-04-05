@@ -4,7 +4,7 @@ import styles from "./Form.module.css";
 
 export default function Form({ children, onSubmit }) {
   return (
-    <form onSubmit={onSubmit}>
+    <form className={styles.form} onSubmit={onSubmit}>
       <h1>
         <img src={logBlogIcon} alt="The Log Blog icon" />
         The Log Blog
