@@ -2,7 +2,7 @@ import App from "../App";
 import ProtectedRoute from "./ProtectedRoute.jsx";
 import Signup from "../pages/Signup.jsx";
 import Login from "../pages/Login.jsx";
-import NotFound from "../pages/NotFound.jsx";
+import NotFoundPage from "../pages/NotFoundPage.jsx";
 
 const routes = [
   {
@@ -12,7 +12,7 @@ const routes = [
         <App />
       </ProtectedRoute>
     ),
-    errorElement: <NotFound />,
+    errorElement: <NotFoundPage />,
   },
 
   {

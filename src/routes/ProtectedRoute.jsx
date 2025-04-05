@@ -19,8 +19,6 @@ export default function ProtectedRoute({ children }) {
 
     const decoded = jwtDecode(token);
 
-    console.log(decoded);
-
     const userId = decoded.sub;
 
     async function fetchUser() {
