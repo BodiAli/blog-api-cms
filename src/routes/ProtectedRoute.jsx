@@ -30,6 +30,10 @@ export default function ProtectedRoute({ children }) {
         });
 
         if (!res.ok) {
+          if (res.status === 401) {
+            setError("You need to sign in or sign up before continuing.");
+            return;
+          }
           throw new Error("Failed to fetch user");
         }
 
@@ -52,7 +56,7 @@ export default function ProtectedRoute({ children }) {
   if (loading) return <p>Loading...</p>;
 
   if (error || !token || !user) {
-    return <Navigate to="log-in" replace={true} />;
+    return <Navigate to="log-in" replace={true} state={error} />;
   }
 
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
