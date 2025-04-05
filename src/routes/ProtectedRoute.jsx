@@ -13,6 +13,7 @@ export default function ProtectedRoute({ children }) {
 
   useEffect(() => {
     if (!token) {
+      setError("You need to sign in or sign up before continuing.");
       setLoading(false);
       return;
     }

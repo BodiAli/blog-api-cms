@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation } from "react-router";
 import Form from "../../components/Form/Form.jsx";
 
@@ -25,6 +26,13 @@ export default function Login() {
 
     localStorage.setItem("token", token);
   }
+
+  // Clear the flash message from history after displaying it
+  useEffect(() => {
+    if (flashMessage) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, [flashMessage]);
 
   return (
     <Form onSubmit={handleUserLogin}>
