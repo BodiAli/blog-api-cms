@@ -1,9 +1,8 @@
 import "./App.css";
+import { useUser } from "./utils/UserContext";
 
 export default function App() {
-  return (
-    <>
-      <h1>Hello, World!</h1>
-    </>
-  );
+  const user = useUser();
+
+  return <h1>Welcome back, {user.firstName}</h1>;
 }
