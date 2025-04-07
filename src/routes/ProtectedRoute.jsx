@@ -1,20 +1,22 @@
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import { UserContext } from "../utils/UserContext";
 
 export default function ProtectedRoute({ children }) {
   const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
+  const [redirect, setRedirect] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (!token) {
-      setError("You need to sign in or sign up before continuing.");
+      toast.error("You need to sign in or sign up before continuing.");
       setLoading(false);
+      setRedirect(true);
       return;
     }
 
@@ -32,7 +34,8 @@ export default function ProtectedRoute({ children }) {
 
         if (!res.ok) {
           if (res.status === 401) {
-            setError("You need to sign in or sign up before continuing.");
+            toast.error("You need to sign in or sign up before continuing.");
+            setRedirect(true);
             return;
           }
           throw new Error("Failed to fetch user");
@@ -42,8 +45,9 @@ export default function ProtectedRoute({ children }) {
 
         setUser(fetchedUser);
       } catch (error) {
+        toast.error(error.message || "Error fetching user");
         setUser(null);
-        setError(error.message || "Error fetching user");
+        setRedirect(true);
       } finally {
         setLoading(false);
       }
@@ -56,8 +60,8 @@ export default function ProtectedRoute({ children }) {
 
   if (loading) return <p>Loading...</p>;
 
-  if (error || !token || !user) {
-    return <Navigate to="log-in" replace={true} state={error} />;
+  if (redirect || !token || !user) {
+    return <Navigate to="log-in" replace={true} />;
   }
 
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
