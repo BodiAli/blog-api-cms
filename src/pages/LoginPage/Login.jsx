@@ -1,12 +1,7 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router";
+import logBlogIcon from "/images/the-log-blog-icon.svg";
 import Form from "../../components/Form/Form.jsx";
 
 export default function Login() {
-  const location = useLocation();
-
-  const flashMessage = location.state;
-
   async function handleUserLogin(e) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -27,25 +22,25 @@ export default function Login() {
     localStorage.setItem("token", token);
   }
 
-  // Clear the flash message from history after displaying it
-  useEffect(() => {
-    if (flashMessage) {
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
-  }, [flashMessage]);
-
   return (
-    <Form onSubmit={handleUserLogin}>
-      {flashMessage && <p>{flashMessage}</p>}
-      <label>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label>
-        Password
-        <input type="text" name="password" />
-      </label>
-      <button type="submit">Submit</button>
-    </Form>
+    <main>
+      <div>
+        <h1>
+          <img src={logBlogIcon} alt="The Log Blog icon" />
+          The Log Blog
+        </h1>
+      </div>
+      <Form onSubmit={handleUserLogin}>
+        <label>
+          Email
+          <input type="email" name="email" />
+        </label>
+        <label>
+          Password
+          <input type="text" name="password" />
+        </label>
+        <button type="submit">Submit</button>
+      </Form>
+    </main>
   );
 }
