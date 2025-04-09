@@ -1,0 +1,21 @@
+main {
+  padding: 1rem;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero > h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "roboto", Arial, sans-serif;
+  font-size: 2rem;
+}
+
+.hero > h1 > img {
+  width: 50px;
+}
