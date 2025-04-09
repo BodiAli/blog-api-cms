@@ -1,5 +1,6 @@
 import logBlogIcon from "/images/the-log-blog-icon.svg";
 import Form from "../../components/Form/Form.jsx";
+import styles from "./Login.module.css";
 
 export default function Login() {
   async function handleUserLogin(e) {
@@ -24,7 +25,7 @@ export default function Login() {
 
   return (
     <main>
-      <div>
+      <div className={styles.hero}>
         <h1>
           <img src={logBlogIcon} alt="The Log Blog icon" />
           The Log Blog
