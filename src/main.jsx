@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { ToastContainer } from "react-toastify";
 import routes from "./routes/routes.jsx";
 import "./reset.css";
+import "./global.css";
 
 const router = createBrowserRouter(routes);
 
