@@ -1,4 +1,3 @@
-import "./App.css";
 import { useUser } from "./utils/UserContext";
 
 export default function App() {
