@@ -5,7 +5,9 @@ export default function App() {
 
   return (
     <>
-      <h1>Welcome back, {user.firstName}</h1>
+      <h1>
+        Welcome back, {user.firstName} {user.lastName}
+      </h1>
     </>
   );
 }
