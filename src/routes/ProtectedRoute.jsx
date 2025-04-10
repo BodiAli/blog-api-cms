@@ -20,9 +20,14 @@ export default function ProtectedRoute({ children }) {
       return;
     }
 
-    const decoded = jwtDecode(token);
+    const userId = getUserIdFromToken(token);
 
-    const userId = decoded.sub;
+    if (!userId) {
+      toast.error("Invalid token.");
+      setLoading(false);
+      setRedirect(true);
+      return;
+    }
 
     async function fetchUser() {
       try {
@@ -70,3 +75,12 @@ export default function ProtectedRoute({ children }) {
 ProtectedRoute.propTypes = {
   children: PropTypes.element.isRequired,
 };
+
+function getUserIdFromToken(token) {
+  try {
+    const decoded = jwtDecode(token);
+    return decoded.sub;
+  } catch {
+    return null;
+  }
+}
