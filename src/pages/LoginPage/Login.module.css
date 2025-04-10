@@ -16,6 +16,6 @@ main {
   font-size: 2rem;
 }
 
-.hero > h1 > img {
+.hero > img {
   width: 50px;
 }
