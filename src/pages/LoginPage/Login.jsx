@@ -1,8 +1,14 @@
 import logBlogIcon from "/images/the-log-blog-icon.svg";
 import Form from "../../components/Form/Form.jsx";
 import styles from "./Login.module.css";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { useState } from "react";
 
 export default function Login() {
+  const [errors, setErrors] = useState([]);
+  const navigate = useNavigate();
+
   async function handleUserLogin(e) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -10,26 +16,45 @@ export default function Login() {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/users/log-in`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/users/log-in`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const { token } = await res.json();
+      if (!res.ok) {
+        if (res.status === 400) {
+          const { errors: badRequestErrors } = await res.json();
+          setErrors(badRequestErrors);
+          return;
+        }
 
-    localStorage.setItem("token", token);
+        if (res.status === 401) {
+          const { error: unauthorizedError } = await res.json();
+          setErrors([{ msg: unauthorizedError }]);
+          return;
+        }
+        throw new Error("Failed to log in please try again later");
+      }
+
+      const { token } = await res.json();
+
+      localStorage.setItem("token", token);
+
+      navigate("/");
+    } catch {
+      toast.error("Failed to log in please try again later");
+    }
   }
 
   return (
     <main>
       <div className={styles.hero}>
-        <h1>
-          <img src={logBlogIcon} alt="The Log Blog icon" />
-          The Log Blog
-        </h1>
+        <img src={logBlogIcon} alt="The Log Blog icon" />
+        <h1>The Log Blog</h1>
       </div>
       <Form onSubmit={handleUserLogin}>
         <label>
@@ -40,8 +65,13 @@ export default function Login() {
           Password
           <input type="text" name="password" />
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit">Log in</button>
       </Form>
+      <ul>
+        {errors.map((error, i) => {
+          return <li key={i}>{error.msg}</li>;
+        })}
+      </ul>
     </main>
   );
 }
