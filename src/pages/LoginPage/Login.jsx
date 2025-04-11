@@ -1,9 +1,10 @@
 import logBlogIcon from "/images/the-log-blog-icon.svg";
-import Form from "../../components/Form/Form.jsx";
-import styles from "./Login.module.css";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import Form from "../../components/Form/Form.jsx";
+import FormButton from "../../components/FormButton/FormButton.jsx";
+import styles from "./Login.module.css";
 
 export default function Login() {
   const [errors, setErrors] = useState([]);
@@ -57,21 +58,26 @@ export default function Login() {
         <h1>The Log Blog</h1>
       </div>
       <Form onSubmit={handleUserLogin}>
-        <label>
-          Email
-          <input type="email" name="email" />
-        </label>
-        <label>
-          Password
-          <input type="text" name="password" />
-        </label>
-        <button type="submit">Log in</button>
+        <ul className={styles.errors}>
+          {errors.map((error, i) => {
+            return <li key={i}>{error.msg}</li>;
+          })}
+        </ul>
+        <div className={styles.formContent}>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="name@email.com" />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" placeholder="Password" />
+          </label>
+          <FormButton>Log in</FormButton>
+          <p>
+            Don&apos;t have an account? <Link to="/sign-up">Sign up</Link>
+          </p>
+        </div>
       </Form>
-      <ul>
-        {errors.map((error, i) => {
-          return <li key={i}>{error.msg}</li>;
-        })}
-      </ul>
     </main>
   );
 }
