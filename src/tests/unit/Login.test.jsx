@@ -32,8 +32,8 @@ describe("Login page component", () => {
 
     render(<RouterProvider router={router} />);
 
-    expect(screen.getByRole("textbox", { name: "Email" })).toBeInTheDocument();
-    expect(screen.getByRole("textbox", { name: "Password" })).toBeInTheDocument();
+    expect(screen.getByLabelText("Email")).toBeInTheDocument();
+    expect(screen.getByLabelText("Password")).toBeInTheDocument();
   });
 
   test("should set token in localStorage on form submit", async () => {
