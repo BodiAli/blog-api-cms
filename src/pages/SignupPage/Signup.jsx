@@ -6,13 +6,15 @@ import Form from "../../components/Form/Form.jsx";
 import FormButton from "../../components/FormButton/FormButton.jsx";
 import styles from "./Signup.module.css";
 
+// TODO: Implement preview selected image
+
 export default function Signup() {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
-  async function handleUserSignup(e) {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+  async function handleUserSignup(event) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
 
     try {
       const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/users/sign-up`, {
