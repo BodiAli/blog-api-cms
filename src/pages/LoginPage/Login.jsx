@@ -54,8 +54,13 @@ export default function Login() {
   return (
     <main>
       <div className={styles.hero}>
-        <img src={logBlogIcon} alt="The Log Blog icon" />
-        <h1>The Log Blog</h1>
+        <div className={styles.websiteHeader}>
+          <img src={logBlogIcon} alt="The Log Blog icon" />
+          <h1>The Log Blog</h1>
+        </div>
+        <div className={styles.loginHeader}>
+          <h2>Log in to your account</h2>
+        </div>
       </div>
       <Form onSubmit={handleUserLogin}>
         <ul className={styles.errors}>
@@ -66,11 +71,11 @@ export default function Login() {
         <div className={styles.formContent}>
           <label>
             Email
-            <input type="email" name="email" placeholder="name@email.com" />
+            <input type="email" name="email" placeholder="name@email.com" required />
           </label>
           <label>
             Password
-            <input type="password" name="password" placeholder="Password" />
+            <input type="password" name="password" placeholder="Password" required />
           </label>
           <FormButton>Log in</FormButton>
           <p>
