@@ -48,8 +48,8 @@ describe("App authentication test", () => {
     render(<RouterProvider router={router} />);
 
     expect(router.state.location.pathname).toBe("/log-in");
-    expect(screen.getByRole("textbox", { name: "Email" })).toBeInTheDocument();
-    expect(screen.getByRole("textbox", { name: "Password" })).toBeInTheDocument();
+    expect(screen.getByLabelText("Email")).toBeInTheDocument();
+    expect(screen.getByLabelText("Password")).toBeInTheDocument();
   });
 
   test("If JWT token is invalid redirect to login page", () => {
@@ -60,7 +60,7 @@ describe("App authentication test", () => {
     render(<RouterProvider router={router} />);
 
     expect(router.state.location.pathname).toBe("/log-in");
-    expect(screen.getByRole("textbox", { name: "Email" })).toBeInTheDocument();
-    expect(screen.getByRole("textbox", { name: "Password" })).toBeInTheDocument();
+    expect(screen.getByLabelText("Email")).toBeInTheDocument();
+    expect(screen.getByLabelText("Password")).toBeInTheDocument();
   });
 });
