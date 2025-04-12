@@ -43,8 +43,12 @@ describe("Login page component", () => {
 
     render(<RouterProvider router={router} />);
 
+    const emailInput = screen.getByLabelText("Email");
+    const passwordInput = screen.getByLabelText("Password");
     const submitButton = screen.getByRole("button", { name: "Log in" });
 
+    await user.type(emailInput, "test@email.com");
+    await user.type(passwordInput, "password123");
     await user.click(submitButton);
 
     expect(localStorage.getItem("token")).toBe("token");
@@ -56,8 +60,12 @@ describe("Login page component", () => {
 
     render(<RouterProvider router={router} />);
 
+    const emailInput = screen.getByLabelText("Email");
+    const passwordInput = screen.getByLabelText("Password");
     const submitButton = screen.getByRole("button", { name: "Log in" });
 
+    await user.type(emailInput, "test@email.com");
+    await user.type(passwordInput, "password123");
     await user.click(submitButton);
 
     expect(router.state.location.pathname).toBe("/");
@@ -82,8 +90,12 @@ describe("Login page component", () => {
 
     render(<RouterProvider router={router} />);
 
+    const emailInput = screen.getByLabelText("Email");
+    const passwordInput = screen.getByLabelText("Password");
     const submitButton = screen.getByRole("button", { name: "Log in" });
 
+    await user.type(emailInput, "invalid@email");
+    await user.type(passwordInput, "invalidPassword");
     await user.click(submitButton);
 
     const listItems = screen.getAllByRole("listitem");
@@ -92,7 +104,7 @@ describe("Login page component", () => {
     expect(listItems[1]).toHaveTextContent("Password can not be empty.");
   });
 
-  test("should render an error if email or password is incorrect", async () => {
+  test("should render an error if form is submitted with an invalid email or password", async () => {
     const user = userEvent.setup();
     const router = createMemoryRouter(routes, { initialEntries: ["/log-in"] });
 
@@ -110,8 +122,12 @@ describe("Login page component", () => {
 
     render(<RouterProvider router={router} />);
 
+    const emailInput = screen.getByLabelText("Email");
+    const passwordInput = screen.getByLabelText("Password");
     const submitButton = screen.getByRole("button", { name: "Log in" });
 
+    await user.type(emailInput, "invalid@email");
+    await user.type(passwordInput, "invalidPassword");
     await user.click(submitButton);
 
     expect(screen.getByRole("listitem")).toHaveTextContent("Incorrect email or password");
