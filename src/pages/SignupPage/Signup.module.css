@@ -79,3 +79,31 @@ main {
   color: black;
   font-weight: 500;
 }
+
+.imagePreview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.imagePreview > label {
+  font-family: "roboto", Arial, sans-serif;
+}
+
+.imagePreview > div {
+  display: flex;
+  align-items: start;
+  gap: 20px;
+}
+
+.imagePreview > div > input {
+  flex: 1;
+}
+
+.imagePreview > div > img {
+  width: 20%;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
