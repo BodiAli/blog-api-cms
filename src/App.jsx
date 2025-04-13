@@ -1,13 +1,9 @@
-import { useUser } from "./utils/UserContext";
+import Header from "./components/Header/Header";
 
 export default function App() {
-  const user = useUser();
-
   return (
     <>
-      <h1>
-        Welcome back, {user.firstName} {user.lastName}
-      </h1>
+      <Header />
     </>
   );
 }
