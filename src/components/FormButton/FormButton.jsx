@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import styles from "./FormButton.module.css";
 
 export default function FormButton({ children }) {
@@ -8,7 +7,3 @@ export default function FormButton({ children }) {
     </button>
   );
 }
-
-FormButton.propTypes = {
-  children: PropTypes.element.isRequired,
-};

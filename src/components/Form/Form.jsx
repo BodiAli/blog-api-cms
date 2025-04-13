@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import styles from "./Form.module.css";
 
 export default function Form({ children, onSubmit }) {
@@ -8,8 +7,3 @@ export default function Form({ children, onSubmit }) {
     </form>
   );
 }
-
-Form.propTypes = {
-  children: PropTypes.element.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-};
