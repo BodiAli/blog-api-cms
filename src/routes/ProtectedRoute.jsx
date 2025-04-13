@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router";
-import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import { UserContext } from "../utils/UserContext";
@@ -71,10 +70,6 @@ export default function ProtectedRoute({ children }) {
 
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 }
-
-ProtectedRoute.propTypes = {
-  children: PropTypes.element.isRequired,
-};
 
 function getUserIdFromToken(token) {
   try {
