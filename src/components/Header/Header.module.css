@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.429);
+  padding: 0.5rem 1rem;
+  font-family: "roboto", Arial, sans-serif;
+}
+
+.websiteLogo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.websiteLogo > img {
+  width: 40px;
+}
+
+.profile > img {
+  width: 50px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
