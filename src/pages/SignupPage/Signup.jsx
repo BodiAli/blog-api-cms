@@ -4,11 +4,11 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import Form from "../../components/Form/Form.jsx";
 import FormButton from "../../components/FormButton/FormButton.jsx";
+import anonymousImage from "../../assets/images/anonymous.jpg";
 import styles from "./Signup.module.css";
 
-// TODO: Implement preview selected image
-
 export default function Signup() {
+  const [imagePreview, setImagePreview] = useState(anonymousImage);
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
@@ -39,6 +39,17 @@ export default function Signup() {
       navigate("/");
     } catch {
       toast.error("Failed to sign up please try again later");
+    }
+  }
+
+  function handleImageChange(event) {
+    const file = event.currentTarget.files[0];
+
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setImagePreview(url);
+    } else {
+      setImagePreview(anonymousImage);
     }
   }
 
@@ -80,10 +91,19 @@ export default function Signup() {
             Confirm password
             <input type="password" name="confirmPassword" placeholder="Confirm password" required />
           </label>
-          <label>
-            Profile picture (optional -- max size 3MB)
-            <input type="file" name="userImage" accept="image/*" />
-          </label>
+          <div className={styles.imagePreview}>
+            <label htmlFor="imagePreview">Profile picture (optional -- max size 3MB)</label>
+            <div>
+              <input
+                onChange={handleImageChange}
+                type="file"
+                name="userImage"
+                accept="image/*"
+                id="imagePreview"
+              />
+              <img src={imagePreview} alt="Image preview" />
+            </div>
+          </div>
           <FormButton>Sign up</FormButton>
           <p>
             Already have an account? <Link to="/log-in">Log in</Link>
