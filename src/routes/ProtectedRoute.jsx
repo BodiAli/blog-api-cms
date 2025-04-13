@@ -45,7 +45,7 @@ export default function ProtectedRoute({ children }) {
           throw new Error("Failed to fetch user");
         }
 
-        const { user: fetchedUser } = await res.json();
+        const fetchedUser = await res.json();
 
         setUser(fetchedUser);
       } catch (error) {
