@@ -1,7 +1,7 @@
 import { useUser } from "../../utils/UserContext";
 
 export default function Header() {
-  const user = useUser();
+  const { user } = useUser();
 
   return (
     <>
