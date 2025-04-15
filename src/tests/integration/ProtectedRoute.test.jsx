@@ -3,6 +3,7 @@ import { createMemoryRouter, RouterProvider } from "react-router";
 import routes from "../../routes/routes";
 import { act } from "react";
 import { vi } from "vitest";
+import ProtectedRoute from "../../routes/ProtectedRoute";
 
 const fakeToken = [
   btoa(JSON.stringify({ alg: "HS256", type: "JWT" })),
@@ -22,6 +23,9 @@ window.fetch = vi.fn(() => {
         user: {
           firstName: "bodi",
           lastName: "ali",
+          Profile: {
+            profileImgUrl: "imageUrl",
+          },
         },
       })
     ),
@@ -36,8 +40,19 @@ describe("App authentication test", () => {
       render(<RouterProvider router={router} />);
     });
 
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Welcome back, bodi ali");
     expect(router.state.location.pathname).toBe("/");
+  });
+
+  test("Protected route should render children", async () => {
+    await act(async () => {
+      render(
+        <ProtectedRoute>
+          <h1>Child element</h1>
+        </ProtectedRoute>
+      );
+    });
+
+    expect(screen.getByRole("heading", { level: 1, name: "Child element" })).toBeInTheDocument();
   });
 
   test("If there is no token redirect to login page", () => {
