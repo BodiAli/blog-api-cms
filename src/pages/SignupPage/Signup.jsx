@@ -14,6 +14,7 @@ export default function Signup() {
 
   async function handleUserSignup(event) {
     event.preventDefault();
+
     const formData = new FormData(event.currentTarget);
 
     try {
