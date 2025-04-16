@@ -1,14 +1,16 @@
 import logBlogIcon from "/images/the-log-blog-icon.svg";
 import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "../../components/Form/Form.jsx";
 import FormButton from "../../components/FormButton/FormButton.jsx";
+import { useIsUserSignedIn } from "../../utils/UserContext.jsx";
 import styles from "./Login.module.css";
 
 export default function Login() {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
+  const [isSignedIn, loading] = useIsUserSignedIn();
 
   async function handleUserLogin(event) {
     event.preventDefault();
@@ -18,7 +20,7 @@ export default function Login() {
     const password = formData.get("password");
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/users/log-in`, {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/log-in`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -50,6 +52,15 @@ export default function Login() {
       toast.error("Failed to log in please try again later");
     }
   }
+
+  useEffect(() => {
+    if (isSignedIn) {
+      toast.info("You are already signed in.");
+      navigate("/");
+    }
+  }, [isSignedIn, navigate]);
+
+  if (loading) return <p>LOADING...</p>;
 
   return (
     <main>
