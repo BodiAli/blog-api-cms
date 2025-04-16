@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router";
 import { toast } from "react-toastify";
-import { jwtDecode } from "jwt-decode";
 import { UserContext } from "../utils/UserContext";
 
 export default function ProtectedRoute({ children }) {
@@ -19,18 +18,9 @@ export default function ProtectedRoute({ children }) {
       return;
     }
 
-    const userId = getUserIdFromToken(token);
-
-    if (!userId) {
-      toast.error("Invalid token.");
-      setLoading(false);
-      setRedirect(true);
-      return;
-    }
-
     async function fetchUser() {
       try {
-        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/users/${userId}`, {
+        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/validate`, {
           headers: {
             Authorization: token,
           },
@@ -60,22 +50,12 @@ export default function ProtectedRoute({ children }) {
     fetchUser();
   }, [token]);
 
-  console.log(user);
-
   if (loading) return <p>Loading...</p>;
+  console.log("USER", user);
 
-  if (redirect || !token || !user) {
+  if (redirect) {
     return <Navigate to="log-in" replace={true} />;
   }
 
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
-}
-
-function getUserIdFromToken(token) {
-  try {
-    const decoded = jwtDecode(token);
-    return decoded.sub;
-  } catch {
-    return null;
-  }
 }
