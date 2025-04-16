@@ -4,7 +4,7 @@ import { NavLink } from "react-router";
 import styles from "./Header.module.css";
 
 export default function Header() {
-  const { user } = useUser();
+  const user = useUser();
 
   return (
     <header className={styles.header}>
