@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Navigate } from "react-router";
 import { toast } from "react-toastify";
 import { UserContext } from "../utils/UserContext";
+import Loader from "../components/Loader/Loader";
 
 export default function ProtectedRoute({ children }) {
   const [user, setUser] = useState(null);
@@ -50,7 +51,7 @@ export default function ProtectedRoute({ children }) {
     fetchUser();
   }, [token]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader />;
   console.log("USER", user);
 
   if (redirect) {

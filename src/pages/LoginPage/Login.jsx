@@ -6,6 +6,7 @@ import Form from "../../components/Form/Form.jsx";
 import FormButton from "../../components/FormButton/FormButton.jsx";
 import { useIsUserLoggedIn } from "../../utils/UserContext.jsx";
 import styles from "./Login.module.css";
+import Loader from "../../components/Loader/Loader.jsx";
 
 export default function Login() {
   const [errors, setErrors] = useState([]);
@@ -60,7 +61,7 @@ export default function Login() {
     }
   }, [isSignedIn, navigate]);
 
-  if (loading) return <p>LOADING...</p>;
+  if (loading) return <Loader />;
 
   return (
     <main>
