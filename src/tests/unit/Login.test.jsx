@@ -2,10 +2,17 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import routes from "../../routes/routes";
+import { useIsUserLoggedIn } from "../../utils/UserContext";
 
 vi.mock("../../routes/ProtectedRoute.jsx", () => {
   return {
     default: vi.fn(() => <p>protected route</p>),
+  };
+});
+
+vi.mock("../../utils/UserContext.jsx", () => {
+  return {
+    useIsUserLoggedIn: vi.fn(() => [false, false]),
   };
 });
 
@@ -131,5 +138,16 @@ describe("Login page component", () => {
     await user.click(submitButton);
 
     expect(screen.getByRole("listitem")).toHaveTextContent("Incorrect email or password");
+  });
+
+  test("should navigate to '/' path if user is already logged in", () => {
+    // isSignedIn is true and loading is false
+    useIsUserLoggedIn.mockImplementationOnce(() => [true, false]);
+
+    const router = createMemoryRouter(routes, { initialEntries: ["/log-in"] });
+    render(<RouterProvider router={router} />);
+
+    expect(router.state.location.pathname).toBe("/");
+    expect(screen.getByRole("paragraph")).toHaveTextContent("protected route");
   });
 });
