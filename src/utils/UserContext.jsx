@@ -6,7 +6,7 @@ export function useUser() {
   return useContext(UserContext);
 }
 
-export function useIsUserSignedIn() {
+export function useIsUserLoggedIn() {
   const [signedIn, setSignedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(() => {

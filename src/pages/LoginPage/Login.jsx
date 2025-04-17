@@ -4,13 +4,13 @@ import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import Form from "../../components/Form/Form.jsx";
 import FormButton from "../../components/FormButton/FormButton.jsx";
-import { useIsUserSignedIn } from "../../utils/UserContext.jsx";
+import { useIsUserLoggedIn } from "../../utils/UserContext.jsx";
 import styles from "./Login.module.css";
 
 export default function Login() {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
-  const [isSignedIn, loading] = useIsUserSignedIn();
+  const [isSignedIn, loading] = useIsUserLoggedIn();
 
   async function handleUserLogin(event) {
     event.preventDefault();
