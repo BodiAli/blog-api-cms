@@ -17,12 +17,10 @@ window.fetch = vi.fn(() => {
     ok: true,
     json: vi.fn(() =>
       Promise.resolve({
-        user: {
-          firstName: "bodi",
-          lastName: "ali",
-          Profile: {
-            profileImgUrl: "imageUrl",
-          },
+        firstName: "bodi",
+        lastName: "ali",
+        Profile: {
+          profileImgUrl: "imageUrl",
         },
       })
     ),
