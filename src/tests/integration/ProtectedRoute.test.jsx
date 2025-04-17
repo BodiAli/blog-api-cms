@@ -1,9 +1,16 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import routes from "../../routes/routes";
 import { act } from "react";
-import { vi } from "vitest";
 import ProtectedRoute from "../../routes/ProtectedRoute";
+
+vi.mock("../../utils/UserContext.jsx", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    useIsUserLoggedIn: vi.fn(() => [false, false]),
+  };
+});
 
 const fakeToken = [
   btoa(JSON.stringify({ alg: "HS256", type: "JWT" })),
@@ -20,12 +27,10 @@ window.fetch = vi.fn(() => {
     ok: true,
     json: vi.fn(() =>
       Promise.resolve({
-        user: {
-          firstName: "bodi",
-          lastName: "ali",
-          Profile: {
-            profileImgUrl: "imageUrl",
-          },
+        firstName: "bodi",
+        lastName: "ali",
+        Profile: {
+          profileImgUrl: "imageUrl",
         },
       })
     ),
@@ -67,15 +72,28 @@ describe("App authentication test", () => {
     expect(screen.getByLabelText("Password")).toBeInTheDocument();
   });
 
-  test("If JWT token is invalid redirect to login page", () => {
+  test("If JWT token is invalid redirect to login page", async () => {
     const router = createMemoryRouter(routes);
 
     localStorage.getItem = vi.fn(() => "Invalid token");
 
+    window.fetch.mockImplementationOnce(() => {
+      return Promise.resolve({
+        ok: false,
+        status: 401,
+      });
+    });
+
     render(<RouterProvider router={router} />);
 
-    expect(router.state.location.pathname).toBe("/log-in");
-    expect(screen.getByLabelText("Email")).toBeInTheDocument();
-    expect(screen.getByLabelText("Password")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(router.state.location.pathname).toBe("/log-in");
+    });
+
+    const email = await screen.findByLabelText("Email");
+    const password = await screen.findByLabelText("Password");
+
+    expect(email).toBeInTheDocument();
+    expect(password).toBeInTheDocument();
   });
 });
