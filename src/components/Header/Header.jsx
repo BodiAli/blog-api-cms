@@ -13,7 +13,7 @@ export default function Header() {
         <h1>The Log Blog</h1>
       </div>
       <nav>
-        <NavLink to="posts">Manage posts</NavLink>
+        <NavLink to="/">Manage posts</NavLink>
         <NavLink to="create-post">Create post</NavLink>
         <a href="#">Public</a>
       </nav>
