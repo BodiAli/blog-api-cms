@@ -18,7 +18,7 @@ export default function Signup() {
     const formData = new FormData(event.currentTarget);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/users/sign-up`, {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/sign-up`, {
         method: "post",
         body: formData,
       });
@@ -26,6 +26,7 @@ export default function Signup() {
       if (!res.ok) {
         if (res.status === 400) {
           const { errors: badRequestErrors } = await res.json();
+
           setErrors(badRequestErrors);
           return;
         }
