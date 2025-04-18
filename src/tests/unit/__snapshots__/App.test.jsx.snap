@@ -18,9 +18,10 @@ exports[`App component > Should render user profile and posts with expected mana
     </div>
     <nav>
       <a
-        class=""
+        aria-current="page"
+        class="active"
         data-discover="true"
-        href="/posts"
+        href="/"
       >
         Manage posts
       </a>
@@ -46,9 +47,9 @@ exports[`App component > Should render user profile and posts with expected mana
       />
       <p>
         Welcome, 
-        bodi
+        first name
          
-        ali
+        last name
       </p>
     </div>
   </header>
