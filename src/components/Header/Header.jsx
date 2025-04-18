@@ -10,18 +10,18 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.websiteLogo}>
         <img src={logBlogIcon} alt="The Log Blog icon" />
-        <h1>The Log Blog</h1>
+        <span>The Log Blog</span>
       </div>
-      <nav>
+      <nav className={styles.nav}>
         <NavLink to="/">Manage posts</NavLink>
         <NavLink to="create-post">Create post</NavLink>
         <a href="#">Public</a>
       </nav>
       <div className={styles.profile}>
-        <img src={user.Profile.profileImgUrl} alt="User profile picture" />
         <p>
           Welcome, {user.firstName} {user.lastName}
         </p>
+        <img src={user.Profile.profileImgUrl} alt="User profile picture" />
       </div>
     </header>
   );

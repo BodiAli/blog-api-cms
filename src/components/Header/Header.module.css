@@ -13,6 +13,10 @@
   gap: 5px;
 }
 
+.websiteLogo > span {
+  font-size: 1.1rem;
+}
+
 .websiteLogo > img {
   width: 40px;
 }
@@ -21,4 +25,31 @@
   width: 50px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav > a {
+  text-decoration: none;
+  color: #000;
+  position: relative;
+  transition: color 200ms ease;
+
+  &:hover {
+    color: gray;
+  }
+}
+
+:global(a.active) {
+  color: gray;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
