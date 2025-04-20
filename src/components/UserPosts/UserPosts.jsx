@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import parse from "html-react-parser";
 import Loader from "../Loader/Loader";
 import styles from "./UserPosts.module.css";
 
@@ -40,7 +39,7 @@ export default function UserPosts() {
 
   return (
     <main>
-      <div className={styles.userPostContent}>{parse(posts.content)}</div>
+      <p>koko</p>
     </main>
   );
 }
