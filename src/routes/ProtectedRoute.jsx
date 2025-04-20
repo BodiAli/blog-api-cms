@@ -52,7 +52,6 @@ export default function ProtectedRoute({ children }) {
   }, [token]);
 
   if (loading) return <Loader />;
-  console.log("USER", user);
 
   if (redirect) {
     return <Navigate to="log-in" replace={true} />;
