@@ -1,13 +1,16 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router";
 import { Editor } from "@tinymce/tinymce-react";
 import { toast } from "react-toastify";
 import Form from "../Form/Form";
 import FormButton from "../FormButton/FormButton";
+import Topics from "../Topics/Topics";
 import styles from "./CreatePost.module.css";
 
 export default function CreatePost() {
   const editorRef = useRef(null);
   const [errors, setErrors] = useState([]);
+  const navigate = useNavigate();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -37,17 +40,19 @@ export default function CreatePost() {
           const { errors: badRequestErrors } = await res.json();
 
           setErrors(badRequestErrors);
+          window.scrollTo({
+            top: 0,
+          });
           return;
         }
-
-        console.log("RES", res);
 
         throw new Error("Failed to create post please try again later");
       }
 
       const { msg } = await res.json();
 
-      console.log(msg);
+      toast.success(msg);
+      navigate("/");
     } catch {
       toast.error("Failed to create post please try again later");
     }
@@ -82,6 +87,7 @@ export default function CreatePost() {
             Cover image (optional)
             <input type="file" name="postImage" accept="image/*" />
           </label>
+          <Topics className={styles.topics} />
           <div className={styles.publish}>
             <label>
               Publish
