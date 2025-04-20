@@ -12,3 +12,8 @@
     background-color: rgba(43, 42, 42, 0.863);
   }
 }
+
+.button.disabled {
+  background-color: gray;
+  cursor: wait;
+}
