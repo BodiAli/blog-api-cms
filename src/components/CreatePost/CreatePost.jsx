@@ -10,6 +10,7 @@ import styles from "./CreatePost.module.css";
 export default function CreatePost() {
   const editorRef = useRef(null);
   const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSubmit(event) {
@@ -27,6 +28,8 @@ export default function CreatePost() {
     formData.append("content", editorRef.current.getContent());
 
     try {
+      setLoading(true);
+
       const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/posts`, {
         method: "post",
         headers: {
@@ -55,6 +58,8 @@ export default function CreatePost() {
       navigate("/");
     } catch {
       toast.error("Failed to create post please try again later");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -94,7 +99,7 @@ export default function CreatePost() {
               <input type="checkbox" name="published" defaultChecked />
             </label>
           </div>
-          <FormButton>Create post</FormButton>
+          <FormButton disabled={loading}>Create post</FormButton>
         </div>
       </Form>
     </main>
