@@ -10,6 +10,7 @@ import styles from "./Signup.module.css";
 export default function Signup() {
   const [imagePreview, setImagePreview] = useState(anonymousImage);
   const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleUserSignup(event) {
@@ -18,6 +19,8 @@ export default function Signup() {
     const formData = new FormData(event.currentTarget);
 
     try {
+      setLoading(true);
+
       const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/sign-up`, {
         method: "post",
         body: formData,
@@ -41,6 +44,8 @@ export default function Signup() {
       navigate("/");
     } catch {
       toast.error("Failed to sign up please try again later");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -106,7 +111,7 @@ export default function Signup() {
               <img src={imagePreview} alt="Image preview" />
             </div>
           </div>
-          <FormButton>Sign up</FormButton>
+          <FormButton disabled={loading}>Sign up</FormButton>
           <p>
             Already have an account? <Link to="/log-in">Log in</Link>
           </p>
