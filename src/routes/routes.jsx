@@ -5,6 +5,7 @@ import Login from "../pages/LoginPage/Login.jsx";
 import NotFound from "../pages/NotFoundPage/NotFound.jsx";
 import CreatePost from "../components/CreatePost/CreatePost.jsx";
 import UserPosts from "../components/UserPosts/UserPosts.jsx";
+import ErrorHandler from "../components/ErrorHandler/ErrorHandler.jsx";
 
 const routes = [
   {
@@ -17,12 +18,17 @@ const routes = [
     errorElement: <NotFound />,
     children: [
       {
-        index: true,
-        Component: UserPosts,
-      },
-      {
-        path: "create-post",
-        Component: CreatePost,
+        errorElement: <ErrorHandler />,
+        children: [
+          {
+            index: true,
+            Component: UserPosts,
+          },
+          {
+            path: "create-post",
+            Component: CreatePost,
+          },
+        ],
       },
     ],
   },
