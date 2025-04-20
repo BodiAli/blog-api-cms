@@ -56,7 +56,7 @@ export default function Signup() {
   }
 
   return (
-    <main>
+    <main className={styles.main}>
       <div className={styles.hero}>
         <div className={styles.websiteHeader}>
           <img src={logBlogIcon} alt="The Log Blog icon" />
