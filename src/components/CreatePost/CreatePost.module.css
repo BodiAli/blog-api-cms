@@ -20,7 +20,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
   width: 60%;
 }
 
@@ -45,14 +45,63 @@
   width: 100%;
 }
 
+.topics {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.topics > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topics > div:first-child > label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topics > div:first-child input {
+  flex: 1;
+}
+
+.topics > div:first-child > button {
+  background-color: rgb(72, 130, 180);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+  &:hover {
+    background-color: rgb(102, 148, 188);
+  }
+}
+
+.topics > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0px 5px gray;
+  padding: 0.5rem;
+}
+
 .publish {
-  align-self: start;
+  align-self: end;
 }
 
 .publish > label {
   display: flex;
   align-items: center;
   gap: 5px;
+  font-size: 1.2rem;
 }
 
 .formContent > button {
