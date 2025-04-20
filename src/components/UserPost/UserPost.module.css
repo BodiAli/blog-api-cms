@@ -1,0 +1,3 @@
+.userPostContent > * {
+  all: revert;
+}
