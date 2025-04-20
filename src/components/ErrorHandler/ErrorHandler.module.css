@@ -1,0 +1,16 @@
+.error {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  font-family: "roboto", Arial, sans-serif;
+}
+
+.error > h2 {
+  font-size: 2rem;
+}
+
+.error > p {
+  color: crimson;
+}
