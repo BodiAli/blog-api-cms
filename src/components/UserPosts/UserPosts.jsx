@@ -8,9 +8,12 @@ export default function UserPosts() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const queryString = new URLSearchParams(window.location.search);
+    const page = queryString.get("page");
+
     async function fetchUserPosts() {
       try {
-        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/users/posts`, {
+        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/users/posts?page=${page}`, {
           headers: {
             Authorization: localStorage.getItem("token"),
           },
