@@ -4,7 +4,7 @@ import styles from "./UserPosts.module.css";
 
 export default function UserPosts() {
   const [error, setError] = useState(null);
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function UserPosts() {
         }
 
         const { posts: fetchedPosts } = await res.json();
-        setPosts(fetchedPosts[0]);
+        setPosts(fetchedPosts);
         console.log(fetchedPosts);
       } catch (error) {
         setError(error);
