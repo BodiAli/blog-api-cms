@@ -94,13 +94,7 @@ export default function CreatePost() {
               <input type="checkbox" name="published" defaultChecked />
             </label>
           </div>
-          <FormButton
-            onClick={() => {
-              console.log(editorRef.current.getContent());
-            }}
-          >
-            Create post
-          </FormButton>
+          <FormButton>Create post</FormButton>
         </div>
       </Form>
     </main>
