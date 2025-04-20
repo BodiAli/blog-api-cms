@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import parse from "html-react-parser";
+import Loader from "../Loader/Loader";
+import styles from "./UserPosts.module.css";
 
 export default function UserPosts() {
+  const [error, setError] = useState(null);
   const [posts, setPosts] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -19,18 +23,24 @@ export default function UserPosts() {
 
         const { posts: fetchedPosts } = await res.json();
         setPosts(fetchedPosts[0]);
-        console.log(fetchedPosts[0]);
+        console.log(fetchedPosts);
       } catch (error) {
-        console.log(error);
+        setError(error);
+      } finally {
+        setLoading(false);
       }
     }
 
     fetchUserPosts();
   }, []);
 
+  if (error) throw new Error(error);
+
+  if (loading) return <Loader />;
+
   return (
     <main>
-      <p>koko</p>
+      <div className={styles.userPostContent}>{parse(posts.content)}</div>
     </main>
   );
 }
