@@ -1,29 +1,28 @@
 import { useState, Fragment } from "react";
 
-export default function Topics() {
+export default function Topics({ className }) {
   const [topicValue, setTopicValue] = useState("");
   const [topics, setTopics] = useState([]);
 
   return (
-    <>
-      <form
-        method="post"
-        onSubmit={(e) => {
-          e.preventDefault();
-          const formData = new FormData(e.currentTarget);
-          console.log(formData.getAll("topics"));
-        }}
-      >
-        <label htmlFor="createTopic">Topics</label>
-        <input
-          type="text"
-          value={topicValue}
-          onChange={(e) => setTopicValue(e.target.value)}
-          name="createTopic"
-        />
+    <div className={className}>
+      <div>
+        <label>
+          Topics
+          <input
+            type="text"
+            placeholder="Topic name"
+            value={topicValue}
+            onChange={(e) => setTopicValue(e.target.value)}
+          />
+        </label>
         <button
           type="button"
           onClick={() => {
+            if (!topicValue.trim()) {
+              alert("Topic can not be empty.");
+              return;
+            }
             const newTopics = [...topics, topicValue];
             setTopics(newTopics);
             setTopicValue("");
@@ -31,18 +30,20 @@ export default function Topics() {
         >
           Create
         </button>
+      </div>
+
+      <div style={{ display: topics.length === 0 ? "none" : "flex" }}>
         {topics.map((topic, index) => {
           return (
             <Fragment key={index}>
               <label>
                 {topic}
-                <input type="checkbox" name="topics" value={topic} />
+                <input type="checkbox" name="topics" value={topic} defaultChecked />
               </label>
             </Fragment>
           );
         })}
-        <button type="submit">Submit</button>
-      </form>
-    </>
+      </div>
+    </div>
   );
 }
