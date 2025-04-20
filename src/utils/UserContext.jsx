@@ -23,8 +23,8 @@ export function useIsUserLoggedIn() {
           setSignedIn(true);
           return;
         }
-      } catch {
-        console.error("Network error");
+      } catch (error) {
+        console.error(error.message);
         return;
       } finally {
         setLoading(false);
