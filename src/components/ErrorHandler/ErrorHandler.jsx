@@ -8,6 +8,7 @@ export default function ErrorHandler() {
     <div className={styles.error}>
       <h2>Unexpected error occurred!</h2>
       <p>{error.message}</p>
+      <button onClick={() => window.location.reload()}>Reload page</button>
     </div>
   );
 }
