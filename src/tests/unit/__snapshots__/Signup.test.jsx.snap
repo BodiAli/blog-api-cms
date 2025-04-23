@@ -2,7 +2,9 @@
 
 exports[`Sign up page component > should render signup form with expected tags and inputs 1`] = `
 <div>
-  <main>
+  <main
+    class="_main_f85b20"
+  >
     <div
       class="_hero_f85b20"
     >
@@ -101,7 +103,7 @@ exports[`Sign up page component > should render signup form with expected tags a
           </div>
         </div>
         <button
-          class="_button_64628a"
+          class="_button_64628a "
           type="submit"
         >
           Sign up

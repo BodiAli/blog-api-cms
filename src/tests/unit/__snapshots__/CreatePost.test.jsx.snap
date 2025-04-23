@@ -132,7 +132,7 @@ exports[`CreatePost component > Should render form with inputs and TinyMCE libra
           </label>
         </div>
         <button
-          class="_button_64628a"
+          class="_button_64628a "
           type="submit"
         >
           Create post
