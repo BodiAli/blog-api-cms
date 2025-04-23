@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Topics component > Should render a label, input, and button to create topics 1`] = `
+<div>
+  <div>
+    <div>
+      <label>
+        Topics
+        <input
+          placeholder="Topic name"
+          type="text"
+          value=""
+        />
+      </label>
+      <button
+        type="button"
+      >
+        Create
+      </button>
+    </div>
+    <div
+      style="display: none;"
+    />
+  </div>
+</div>
+`;
