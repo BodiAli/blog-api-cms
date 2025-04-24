@@ -1,10 +1,17 @@
 import logBlogIcon from "/images/the-log-blog-icon.svg";
 import { useUser } from "../../utils/UserContext";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import anonymousImage from "../../assets/images/anonymous.jpg";
 import styles from "./Header.module.css";
 
 export default function Header() {
   const user = useUser();
+  const navigate = useNavigate();
+
+  function handleUserLogout() {
+    localStorage.removeItem("token");
+    navigate("/log-in", { replace: true });
+  }
 
   return (
     <header className={styles.header}>
@@ -21,7 +28,11 @@ export default function Header() {
         <p>
           Welcome, {user.firstName} {user.lastName}
         </p>
-        <img src={user.Profile.profileImgUrl} alt="User profile picture" />
+        <img
+          src={user.Profile.profileImgUrl ? user.Profile.profileImgUrl : anonymousImage}
+          alt="User profile picture"
+        />
+        <button onClick={handleUserLogout}>Logout</button>
       </div>
     </header>
   );
