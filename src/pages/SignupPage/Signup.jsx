@@ -80,11 +80,11 @@ export default function Signup() {
         <div className={styles.formContent}>
           <label>
             First name
-            <input type="text" name="firstName" placeholder="First name" required />
+            <input type="text" name="firstName" placeholder="First name" required maxLength={255} />
           </label>
           <label>
             Last name
-            <input type="text" name="lastName" placeholder="Last name" required />
+            <input type="text" name="lastName" placeholder="Last name" required maxLength={255} />
           </label>
           <label>
             Email
