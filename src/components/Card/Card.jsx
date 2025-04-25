@@ -1,3 +1,4 @@
+import noImage from "../../assets/images/no-image.svg";
 import styles from "./Card.module.css";
 
 export default function Card({ post }) {
@@ -7,8 +8,8 @@ export default function Card({ post }) {
     <div className={styles.card}>
       <div className={styles.text}>
         <div className={styles.textContainer1}>
-          <p>{post.title}</p>
-          <p>{post.createdAt}</p>
+          <p className={styles.title}>{post.title}</p>
+          <p className={styles.createdAt}>{post.createdAt}</p>
         </div>
         <div className={styles.textContainer2}>
           {post.Topics.length !== 0 &&
@@ -21,8 +22,11 @@ export default function Card({ post }) {
           <p>{post.published ? "published" : "unpublished"}</p>
         </div>
       </div>
+      <div className={styles.imageContainer}>
+        <img src={post.imgUrl ? post.imgUrl : noImage} alt="Post cover" />
+      </div>
 
-      <p>VIEW</p>
+      <p className={styles.viewPost}>VIEW</p>
     </div>
   );
 }
