@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
+import { useUser } from "../../utils/UserContext";
+import Card from "../Card/Card";
 import styles from "./UserPosts.module.css";
 
 export default function UserPosts() {
+  const user = useUser();
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +28,7 @@ export default function UserPosts() {
 
         const { posts: fetchedPosts } = await res.json();
         setPosts(fetchedPosts);
-        console.log(fetchedPosts);
+        // console.log(fetchedPosts);
       } catch (error) {
         setError(error);
       } finally {
@@ -41,8 +44,20 @@ export default function UserPosts() {
   if (loading) return <Loader />;
 
   return (
-    <main>
-      <p>koko</p>
+    <main className={styles.main}>
+      <h1>
+        {user.firstName} {user.lastName}&apos;s posts
+      </h1>
+      <hr />
+      <div className={styles.postsContainer}>
+        {posts.length === 0 ? (
+          <p className={styles.noPosts}>You have no posts yet</p>
+        ) : (
+          posts.map((post, i) => {
+            return <Card key={i} post={post} />;
+          })
+        )}
+      </div>
     </main>
   );
 }
