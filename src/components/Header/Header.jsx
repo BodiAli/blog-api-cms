@@ -20,8 +20,12 @@ export default function Header() {
         <span>The Log Blog</span>
       </div>
       <nav className={styles.nav}>
-        <NavLink to="/">Manage posts</NavLink>
-        <NavLink to="create-post">Create post</NavLink>
+        <NavLink to="/" viewTransition>
+          Manage posts
+        </NavLink>
+        <NavLink to="create-post" viewTransition>
+          Create post
+        </NavLink>
         <a href="#">Public</a>
       </nav>
       <div className={styles.profile}>
