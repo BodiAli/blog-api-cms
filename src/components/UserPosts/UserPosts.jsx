@@ -10,6 +10,14 @@ export default function UserPosts() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  function handlePublishPost(updatedPost) {
+    setPosts(
+      posts.map((post) => {
+        return post.id === updatedPost.id ? updatedPost : post;
+      })
+    );
+  }
+
   useEffect(() => {
     const queryString = new URLSearchParams(window.location.search);
     const page = queryString.get("page");
@@ -54,7 +62,7 @@ export default function UserPosts() {
           <p className={styles.noPosts}>You have no posts yet</p>
         ) : (
           posts.map((post, i) => {
-            return <Card key={i} post={post} />;
+            return <Card key={i} post={post} onUpdate={handlePublishPost} />;
           })
         )}
       </div>
