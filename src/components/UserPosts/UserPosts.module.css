@@ -1,0 +1,17 @@
+.main {
+  padding: 1rem;
+  font-family: "roboto", Arial, sans-serif;
+  gap: 2rem;
+}
+
+.main > h1 {
+  font-size: 1.6rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.main > .postsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
