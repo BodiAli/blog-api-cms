@@ -70,3 +70,32 @@
     background-color: rgb(177, 19, 50);
   }
 }
+
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.pagination > button {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+  background-color: rgb(72, 130, 180);
+  &:hover:not(.disabled) {
+    background-color: rgb(102, 148, 188);
+  }
+}
+
+.pagination > .active {
+  border: 2px solid black;
+}
+
+.pagination > .disabled {
+  background-color: rgba(72, 130, 180, 0.463);
+}
