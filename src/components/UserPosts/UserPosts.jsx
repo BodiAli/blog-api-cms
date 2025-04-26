@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
+import { useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Loader from "../Loader/Loader";
 import { useUser } from "../../utils/UserContext";
@@ -9,9 +10,38 @@ export default function UserPosts() {
   const user = useUser();
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
   const dialogRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const queryString = new URLSearchParams(location.search);
+  const currentPage = Number.parseInt(queryString.get("page"), 10) || 1;
+
+  const fetchUserPosts = useCallback(async (page) => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/users/posts?page=${page}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch user posts");
+      }
+
+      const { posts: fetchedPosts, pages } = await res.json();
+      setPosts(fetchedPosts);
+      setTotalPages(pages);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   function handlePublishPost(updatedPost) {
     setPosts(
@@ -33,29 +63,6 @@ export default function UserPosts() {
     dialogRef.current.close();
   }
 
-  async function fetchUserPosts() {
-    const queryString = new URLSearchParams(window.location.search);
-    const page = queryString.get("page");
-    try {
-      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/users/posts?page=${page}`, {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      });
-
-      if (!res.ok) {
-        throw new Error("Failed to fetch user posts");
-      }
-
-      const { posts: fetchedPosts } = await res.json();
-      setPosts(fetchedPosts);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   async function handlePostDelete() {
     try {
       const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/posts/${selectedPost.id}`, {
@@ -69,7 +76,7 @@ export default function UserPosts() {
         throw new Error("Failed to fetch user posts");
       }
 
-      await fetchUserPosts();
+      await fetchUserPosts(currentPage);
 
       closeModal();
       toast.success("Post deleted!");
@@ -82,13 +89,13 @@ export default function UserPosts() {
     let ignore = false;
 
     if (!ignore) {
-      fetchUserPosts();
+      fetchUserPosts(currentPage);
     }
 
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [fetchUserPosts, currentPage]);
 
   if (error) throw new Error(error);
 
@@ -119,6 +126,36 @@ export default function UserPosts() {
             return <Card key={i} post={post} onUpdate={handlePublishPost} requestPostDelete={showModal} />;
           })
         )}
+      </div>
+      <div className={styles.pagination}>
+        <button
+          disabled={currentPage <= 1}
+          onClick={() => {
+            navigate(`?page=${currentPage - 1}`);
+          }}
+        >
+          Back
+        </button>
+        {Array.from({ length: totalPages }, (_val, i) => i + 1).map((pageNumber) => {
+          return (
+            <button
+              onClick={() => {
+                navigate(`?page=${pageNumber}`);
+              }}
+              key={pageNumber}
+            >
+              {pageNumber}
+            </button>
+          );
+        })}
+        <button
+          disabled={currentPage >= totalPages}
+          onClick={() => {
+            navigate(`?page=${currentPage + 1}`);
+          }}
+        >
+          Next
+        </button>
       </div>
     </main>
   );
