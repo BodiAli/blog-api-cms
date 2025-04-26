@@ -34,6 +34,7 @@ export default function UserPosts() {
       }
 
       const { posts: fetchedPosts, pages } = await res.json();
+
       setPosts(fetchedPosts);
       setTotalPages(pages);
     } catch (error) {
@@ -78,7 +79,9 @@ export default function UserPosts() {
 
       closeModal();
 
-      await fetchUserPosts(currentPage);
+      // do not await fetchUserPosts to call toast.success immediately after deleting post successfully
+      fetchUserPosts(currentPage);
+
       toast.success("Post deleted!");
     } catch (error) {
       setError(error);
