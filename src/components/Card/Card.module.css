@@ -3,9 +3,9 @@
   grid-template-columns: 2fr 1fr;
   padding: 2rem 0.5rem 0.5rem 0.5rem;
   border-radius: 5px;
-  border: 2px solid black;
   position: relative;
   gap: 10px;
+  background-color: rgba(240, 240, 240, 0.211);
 }
 
 .text {
@@ -46,6 +46,50 @@
 
 .textContainer3 strong {
   font-weight: 500;
+}
+
+.textContainer3 > p {
+  align-self: center;
+}
+
+.textContainer3 > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.textContainer4 {
+  display: flex;
+  gap: 1rem;
+}
+
+.textContainer4 > * {
+  flex: 1;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+
+.textContainer4 > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: rgb(72, 130, 180);
+  &:hover {
+    background-color: rgb(102, 148, 188);
+  }
+}
+
+.textContainer4 > button:last-child {
+  background-color: crimson;
+  &:hover {
+    background-color: rgb(177, 19, 50);
+  }
 }
 
 .imageContainer > img {
