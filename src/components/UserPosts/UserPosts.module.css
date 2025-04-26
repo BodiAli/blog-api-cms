@@ -13,5 +13,60 @@
 .main > .postsContainer {
   display: flex;
   flex-direction: column;
+  gap: 1.3rem;
+  margin-top: 1rem;
+}
+
+.dialog {
+  top: 0;
+  margin: 2rem auto;
+  width: 70%;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px black;
+}
+
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.dialogContent > p {
+  font-size: 1.8rem;
+}
+
+.dialogContent strong {
+  font-weight: 600;
+}
+
+.dialogContent > div {
+  display: flex;
   gap: 1rem;
+}
+
+.dialogContent button {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+
+.dialogContent button:first-child {
+  background-color: rgb(72, 130, 180);
+  &:hover {
+    background-color: rgb(102, 148, 188);
+  }
+}
+
+.dialogContent button:last-child {
+  background-color: crimson;
+  &:hover {
+    background-color: rgb(177, 19, 50);
+  }
 }
