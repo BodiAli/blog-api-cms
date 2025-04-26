@@ -41,7 +41,7 @@ export default function Signup() {
 
       localStorage.setItem("token", token);
 
-      navigate("/");
+      navigate("/", { viewTransition: true });
     } catch {
       toast.error("Failed to sign up please try again later");
     } finally {

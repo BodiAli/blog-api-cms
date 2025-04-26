@@ -48,7 +48,7 @@ export default function Login() {
 
       localStorage.setItem("token", token);
 
-      navigate("/");
+      navigate("/", { viewTransition: true });
     } catch {
       toast.error("Failed to log in please try again later");
     }
