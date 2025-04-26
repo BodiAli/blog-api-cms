@@ -1,17 +1,17 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import { toast } from "react-toastify";
 import { formatDistanceToNow } from "date-fns";
 import noImage from "../../assets/images/no-image.svg";
 import styles from "./Card.module.css";
 
-export default function Card({ post, onUpdate }) {
+export default function Card({ post, onUpdate, requestPostDelete }) {
   const [loading, setLoading] = useState(false);
   const formattedCreatedAt = formatDistanceToNow(post.createdAt, { addSuffix: true, includeSeconds: true });
 
   async function handlePublishPost() {
     try {
       setLoading(true);
-      console.log(post);
 
       const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/posts/${post.id}/publish`, {
         method: "PATCH",
@@ -23,13 +23,16 @@ export default function Card({ post, onUpdate }) {
         body: JSON.stringify({ published: !post.published }),
       });
 
-      console.log("RES", res);
+      if (!res.ok) {
+        throw new Error("Failed to update post");
+      }
+
       const { msg, post: updatedPost } = await res.json();
 
       onUpdate(updatedPost);
       toast.success(msg);
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
@@ -53,14 +56,23 @@ export default function Card({ post, onUpdate }) {
             <strong>Likes: </strong>
             {post.likes}
           </p>
-          <label className={styles.switch}>
-            <button
-              disabled={loading}
-              onClick={handlePublishPost}
-              className={post.published ? styles.published : ""}
-            ></button>
-            <span className={`${styles.slider} ${styles.round}`}></span>
-          </label>
+          <div>
+            <p>Publish:</p>
+            <label className={styles.switch}>
+              <button
+                disabled={loading}
+                onClick={handlePublishPost}
+                className={post.published ? styles.published : ""}
+              ></button>
+              <span className={`${styles.slider} ${styles.round}`}></span>
+            </label>
+          </div>
+        </div>
+        <div className={styles.textContainer4}>
+          <Link to={`post/${post.id}`} viewTransition>
+            Edit
+          </Link>
+          <button onClick={requestPostDelete(post)}>Delete</button>
         </div>
       </div>
       <div className={styles.imageContainer}>
