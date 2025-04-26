@@ -76,9 +76,9 @@ export default function UserPosts() {
         throw new Error("Failed to fetch user posts");
       }
 
-      await fetchUserPosts(currentPage);
-
       closeModal();
+
+      await fetchUserPosts(currentPage);
       toast.success("Post deleted!");
     } catch (error) {
       setError(error);
@@ -129,9 +129,10 @@ export default function UserPosts() {
       </div>
       <div className={styles.pagination}>
         <button
+          className={currentPage <= 1 ? styles.disabled : ""}
           disabled={currentPage <= 1}
           onClick={() => {
-            navigate(`?page=${currentPage - 1}`);
+            navigate(`?page=${currentPage - 1}`, { viewTransition: true });
           }}
         >
           Back
@@ -140,18 +141,20 @@ export default function UserPosts() {
           return (
             <button
               onClick={() => {
-                navigate(`?page=${pageNumber}`);
+                navigate(`?page=${pageNumber}`, { viewTransition: true });
               }}
               key={pageNumber}
+              className={currentPage === pageNumber ? styles.active : ""}
             >
               {pageNumber}
             </button>
           );
         })}
         <button
+          className={currentPage >= totalPages ? styles.disabled : ""}
           disabled={currentPage >= totalPages}
           onClick={() => {
-            navigate(`?page=${currentPage + 1}`);
+            navigate(`?page=${currentPage + 1}`, { viewTransition: true });
           }}
         >
           Next
