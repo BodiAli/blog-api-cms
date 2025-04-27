@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import userEvent from "@testing-library/user-event";
 import routes from "../../routes/routes";
@@ -18,11 +18,52 @@ vi.mock("../../routes/ProtectedRoute.jsx", async () => {
   };
 });
 
+vi.mock("date-fns", () => {
+  return {
+    formatDistanceToNow: vi.fn(() => "about 1 hour ago"),
+  };
+});
+
+window.fetch = vi.fn(() => {
+  return Promise.resolve({
+    ok: true,
+    status: 200,
+    json: vi.fn(() => {
+      return Promise.resolve({
+        posts: [
+          {
+            id: 1,
+            userId: 1,
+            title: "Post 1",
+            content: "Post content",
+            published: true,
+            likes: 5,
+            createdAt: "2025-04-27T03:03:02.292Z",
+            updatedAt: "2025-04-27T03:03:02.292Z",
+            imgUrl: null,
+            Topics: [
+              { id: 1, name: "Topic 1" },
+              { id: 2, name: "Topic 2" },
+            ],
+          },
+        ],
+        pages: 1,
+      });
+    }),
+  });
+});
+
 describe("App component", () => {
-  test("Should render user profile and posts with expected management buttons", async () => {
+  test("Should render user profile and posts with expected management buttons and pagination", async () => {
     const router = createMemoryRouter(routes);
 
-    const { container } = render(<RouterProvider router={router} />);
+    let container;
+
+    await waitFor(() => {
+      const result = render(<RouterProvider router={router} />);
+
+      container = result.container;
+    });
 
     expect(container).toMatchSnapshot();
   });
