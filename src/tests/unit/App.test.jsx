@@ -68,6 +68,38 @@ describe("App component", () => {
     expect(container).toMatchSnapshot();
   });
 
+  test("Should navigate to 'users/posts/1/edit' when card's edit link is clicked", async () => {
+    const user = userEvent.setup();
+
+    const router = createMemoryRouter(routes);
+
+    await waitFor(() => {
+      render(<RouterProvider router={router} />);
+    });
+
+    const editLink = screen.getByRole("link", { name: "Edit" });
+
+    await user.click(editLink);
+
+    expect(router.state.location.pathname).toBe("/users/posts/1/edit");
+  });
+
+  test("Should navigate to 'users/posts/1' when card's view post link icon is clicked", async () => {
+    const user = userEvent.setup();
+
+    const router = createMemoryRouter(routes);
+
+    await waitFor(() => {
+      render(<RouterProvider router={router} />);
+    });
+
+    const viewPostLink = screen.getByTestId("view-post");
+
+    await user.click(viewPostLink);
+
+    expect(router.state.location.pathname).toBe("/users/posts/1");
+  });
+
   test("navbar should navigate to '/create-post' path when Create post link is clicked", async () => {
     const user = userEvent.setup();
 
