@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { toast } from "react-toastify";
 import { formatDistanceToNow } from "date-fns";
 import noImage from "../../assets/images/no-image.svg";
+import viewPostIcon from "../../assets/images/eye.svg";
 import styles from "./Card.module.css";
 
 export default function Card({ post, onUpdate, requestPostDelete }) {
@@ -78,8 +79,9 @@ export default function Card({ post, onUpdate, requestPostDelete }) {
       <div className={styles.imageContainer}>
         <img src={post.imgUrl ? post.imgUrl : noImage} alt="Post cover" />
       </div>
-
-      <p className={styles.viewPost}>VIEW</p>
+      <Link className={styles.viewPost} to={`users/posts/${post.id}`}>
+        <img src={viewPostIcon} alt="View post" />
+      </Link>
     </div>
   );
 }
