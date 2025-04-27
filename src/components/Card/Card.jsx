@@ -71,7 +71,7 @@ export default function Card({ post, onUpdate, requestPostDelete }) {
           </div>
         </div>
         <div className={styles.textContainer4}>
-          <Link to={`post/${post.id}`} viewTransition>
+          <Link to={`users/posts/${post.id}/edit`} viewTransition>
             Edit
           </Link>
           <button onClick={requestPostDelete(post)}>Delete</button>
@@ -80,7 +80,7 @@ export default function Card({ post, onUpdate, requestPostDelete }) {
       <div className={styles.imageContainer}>
         <img src={post.imgUrl ? post.imgUrl : noImage} alt="Post cover" />
       </div>
-      <Link className={styles.viewPost} to={`users/posts/${post.id}`}>
+      <Link data-testid="view-post" className={styles.viewPost} to={`users/posts/${post.id}`}>
         <img src={viewPostIcon} alt="View post" />
       </Link>
     </div>
