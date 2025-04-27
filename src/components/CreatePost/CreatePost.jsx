@@ -55,7 +55,7 @@ export default function CreatePost() {
       const { msg } = await res.json();
 
       toast.success(msg);
-      navigate("/");
+      navigate("/", { viewTransition: true });
     } catch {
       toast.error("Failed to create post please try again later");
     } finally {
