@@ -79,7 +79,7 @@ export default function UserPosts() {
 
       closeModal();
 
-      // do not await fetchUserPosts to call toast.success immediately after deleting post successfully
+      // do not await fetchUserPosts to call toast.success immediately after successfully deleting post
       fetchUserPosts(currentPage);
 
       toast.success("Post deleted!");
