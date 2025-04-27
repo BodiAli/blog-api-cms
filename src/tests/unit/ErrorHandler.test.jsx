@@ -7,7 +7,7 @@ function ThrowErrorComponent() {
 }
 
 describe("ErrorHandler component", () => {
-  test("Should render error message with a reload button", () => {
+  test("Should render ERROR!!! message with a reload button", () => {
     const Stub = createRoutesStub([
       {
         path: "/",
