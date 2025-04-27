@@ -39,6 +39,7 @@ exports[`Sign up page component > should render signup form with expected tags a
         <label>
           First name
           <input
+            maxlength="255"
             name="firstName"
             placeholder="First name"
             required=""
@@ -48,6 +49,7 @@ exports[`Sign up page component > should render signup form with expected tags a
         <label>
           Last name
           <input
+            maxlength="255"
             name="lastName"
             placeholder="Last name"
             required=""

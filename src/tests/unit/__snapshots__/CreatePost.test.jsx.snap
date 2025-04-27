@@ -53,6 +53,9 @@ exports[`CreatePost component > Should render form with inputs and TinyMCE libra
         alt="User profile picture"
         src="imageUrl"
       />
+      <button>
+        Logout
+      </button>
     </div>
   </header>
   <main
