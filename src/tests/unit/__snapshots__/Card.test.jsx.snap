@@ -1,0 +1,95 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card component > Should render post data 1`] = `
+<div>
+  <div
+    class="_card_1f2933"
+  >
+    <div
+      class="_text_1f2933"
+    >
+      <div
+        class="_textContainer1_1f2933"
+      >
+        <p
+          class="_title_1f2933"
+        >
+          Post 1
+        </p>
+        <p
+          class="_createdAt_1f2933"
+        >
+          about 1 hour ago
+        </p>
+      </div>
+      <div
+        class="_textContainer2_1f2933"
+      >
+        <p>
+          Topic 1
+        </p>
+        <p>
+          Topic 2
+        </p>
+      </div>
+      <div
+        class="_textContainer3_1f2933"
+      >
+        <p>
+          <strong>
+            Likes: 
+          </strong>
+          5
+        </p>
+        <div>
+          <p>
+            Publish:
+          </p>
+          <label
+            class="_switch_1f2933"
+          >
+            <button
+              class="_published_1f2933"
+              data-testid="publish-button"
+            />
+            <span
+              class="_slider_1f2933 _round_1f2933"
+            />
+          </label>
+        </div>
+      </div>
+      <div
+        class="_textContainer4_1f2933"
+      >
+        <a
+          data-discover="true"
+          href="/post/1"
+        >
+          Edit
+        </a>
+        <button>
+          Delete
+        </button>
+      </div>
+    </div>
+    <div
+      class="_imageContainer_1f2933"
+    >
+      <img
+        alt="Post cover"
+        src="/src/assets/images/no-image.svg"
+      />
+    </div>
+    <a
+      class="_viewPost_1f2933"
+      data-discover="true"
+      href="/users/posts/1"
+    >
+      <img
+        alt="View post"
+        src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3e%3cpath%20d='M12,9A3,3%200%200,1%2015,12A3,3%200%200,1%2012,15A3,3%200%200,1%209,12A3,3%200%200,1%2012,9M12,4.5C17,4.5%2021.27,7.61%2023,12C21.27,16.39%2017,19.5%2012,19.5C7,19.5%202.73,16.39%201,12C2.73,7.61%207,4.5%2012,4.5M3.18,12C4.83,15.36%208.24,17.5%2012,17.5C15.76,17.5%2019.17,15.36%2020.82,12C19.17,8.64%2015.76,6.5%2012,6.5C8.24,6.5%204.83,8.64%203.18,12Z'%20/%3e%3c/svg%3e"
+      />
+    </a>
+  </div>
+</div>
+`;
