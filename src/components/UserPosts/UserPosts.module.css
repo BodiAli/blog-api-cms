@@ -71,6 +71,11 @@
   }
 }
 
+.noPosts {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
 .pagination {
   margin-top: 2rem;
   display: flex;

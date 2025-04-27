@@ -130,39 +130,41 @@ export default function UserPosts() {
           })
         )}
       </div>
-      <div className={styles.pagination}>
-        <button
-          className={currentPage <= 1 ? styles.disabled : ""}
-          disabled={currentPage <= 1}
-          onClick={() => {
-            navigate(`?page=${currentPage - 1}`, { viewTransition: true });
-          }}
-        >
-          Back
-        </button>
-        {Array.from({ length: totalPages }, (_val, i) => i + 1).map((pageNumber) => {
-          return (
-            <button
-              onClick={() => {
-                navigate(`?page=${pageNumber}`, { viewTransition: true });
-              }}
-              key={pageNumber}
-              className={currentPage === pageNumber ? styles.active : ""}
-            >
-              {pageNumber}
-            </button>
-          );
-        })}
-        <button
-          className={currentPage >= totalPages ? styles.disabled : ""}
-          disabled={currentPage >= totalPages}
-          onClick={() => {
-            navigate(`?page=${currentPage + 1}`, { viewTransition: true });
-          }}
-        >
-          Next
-        </button>
-      </div>
+      {posts.length > 0 && (
+        <div className={styles.pagination}>
+          <button
+            className={currentPage <= 1 ? styles.disabled : ""}
+            disabled={currentPage <= 1}
+            onClick={() => {
+              navigate(`?page=${currentPage - 1}`, { viewTransition: true });
+            }}
+          >
+            Back
+          </button>
+          {Array.from({ length: totalPages }, (_val, i) => i + 1).map((pageNumber) => {
+            return (
+              <button
+                onClick={() => {
+                  navigate(`?page=${pageNumber}`, { viewTransition: true });
+                }}
+                key={pageNumber}
+                className={currentPage === pageNumber ? styles.active : ""}
+              >
+                {pageNumber}
+              </button>
+            );
+          })}
+          <button
+            className={currentPage >= totalPages ? styles.disabled : ""}
+            disabled={currentPage >= totalPages}
+            onClick={() => {
+              navigate(`?page=${currentPage + 1}`, { viewTransition: true });
+            }}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </main>
   );
 }
