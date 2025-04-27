@@ -63,7 +63,7 @@ exports[`Card component > Should render post data 1`] = `
       >
         <a
           data-discover="true"
-          href="/post/1"
+          href="/users/posts/1/edit"
         >
           Edit
         </a>
@@ -83,6 +83,7 @@ exports[`Card component > Should render post data 1`] = `
     <a
       class="_viewPost_1f2933"
       data-discover="true"
+      data-testid="view-post"
       href="/users/posts/1"
     >
       <img

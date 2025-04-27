@@ -140,6 +140,7 @@ exports[`App component > Should render user profile and posts with expected mana
               >
                 <button
                   class="_published_1f2933"
+                  data-testid="publish-button"
                 />
                 <span
                   class="_slider_1f2933 _round_1f2933"
@@ -152,7 +153,7 @@ exports[`App component > Should render user profile and posts with expected mana
           >
             <a
               data-discover="true"
-              href="/post/1"
+              href="/users/posts/1/edit"
             >
               Edit
             </a>
@@ -172,6 +173,7 @@ exports[`App component > Should render user profile and posts with expected mana
         <a
           class="_viewPost_1f2933"
           data-discover="true"
+          data-testid="view-post"
           href="/users/posts/1"
         >
           <img
