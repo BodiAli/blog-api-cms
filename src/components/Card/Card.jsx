@@ -61,6 +61,7 @@ export default function Card({ post, onUpdate, requestPostDelete }) {
             <p>Publish:</p>
             <label className={styles.switch}>
               <button
+                data-testid="publish-button"
                 disabled={loading}
                 onClick={handlePublishPost}
                 className={post.published ? styles.published : ""}
