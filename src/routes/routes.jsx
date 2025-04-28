@@ -6,6 +6,7 @@ import NotFound from "../pages/NotFoundPage/NotFound.jsx";
 import CreatePost from "../components/CreatePost/CreatePost.jsx";
 import UserPosts from "../components/UserPosts/UserPosts.jsx";
 import UserPost from "../components/UserPost/UserPost.jsx";
+import EditPost from "../components/EditPost/EditPost.jsx";
 import ErrorHandler from "../components/ErrorHandler/ErrorHandler.jsx";
 
 const routes = [
@@ -32,6 +33,10 @@ const routes = [
           {
             path: "users/posts/:postId",
             Component: UserPost,
+          },
+          {
+            path: "users/posts/:postId/edit",
+            Component: EditPost,
           },
         ],
       },
