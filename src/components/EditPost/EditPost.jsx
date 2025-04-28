@@ -64,6 +64,7 @@ export default function EditPost() {
       setLoading(false);
     }
   }
+
   useEffect(() => {
     async function fetchUserPost() {
       try {
