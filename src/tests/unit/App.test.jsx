@@ -54,7 +54,7 @@ window.fetch = vi.fn(() => {
 });
 
 describe("App component", () => {
-  test("Should render user profile and posts with expected management buttons and pagination", async () => {
+  test("Should render header component with user data, and posts with expected management buttons and pagination", async () => {
     const router = createMemoryRouter(routes);
 
     let container;
