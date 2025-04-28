@@ -1,8 +1,8 @@
 import { useState, Fragment } from "react";
 
-export default function Topics({ className }) {
+export default function Topics({ className, initialTopics = [] }) {
   const [topicValue, setTopicValue] = useState("");
-  const [topics, setTopics] = useState([]);
+  const [topics, setTopics] = useState(initialTopics);
 
   return (
     <div className={className}>
@@ -23,7 +23,7 @@ export default function Topics({ className }) {
               alert("Topic can not be empty.");
               return;
             }
-            const newTopics = [...topics, topicValue];
+            const newTopics = [...topics, { name: topicValue.trim() }];
             setTopics(newTopics);
             setTopicValue("");
           }}
@@ -37,8 +37,8 @@ export default function Topics({ className }) {
           return (
             <Fragment key={index}>
               <label>
-                {topic}
-                <input type="checkbox" name="topics" value={topic} defaultChecked />
+                {topic.name}
+                <input type="checkbox" name="topics" value={topic.name} defaultChecked />
               </label>
             </Fragment>
           );
