@@ -70,6 +70,10 @@ export default function EditPost() {
         const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/posts/${postId}`);
 
         if (!res.ok) {
+          if (res.status === 404) {
+            const { error } = await res.json();
+            throw new Error(error);
+          }
           throw new Error("Failed to fetch post");
         }
 
@@ -78,13 +82,14 @@ export default function EditPost() {
         setPost(post);
       } catch (error) {
         toast.error(error.message);
+        navigate("/", { viewTransition: true });
       } finally {
         setLoading(false);
       }
     }
 
     fetchUserPost();
-  }, [postId]);
+  }, [postId, navigate]);
 
   if (loading) return <Loader />;
 
@@ -105,14 +110,14 @@ export default function EditPost() {
               name="title"
               placeholder="Post title"
               maxLength={255}
-              defaultValue={post.title}
+              defaultValue={post?.title}
               required
             />
           </label>
           <div className={styles.editor}>
             <p>Content</p>
             <Editor
-              initialValue={post.content}
+              initialValue={post?.content}
               apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
               onInit={(_evt, editor) => (editorRef.current = editor)}
               init={{
@@ -125,7 +130,7 @@ export default function EditPost() {
             Cover image (optional)
             <input type="file" name="postImage" accept="image/*" />
           </label>
-          <Topics initialTopics={post.Topics} className={styles.topics} />
+          <Topics initialTopics={post?.Topics} className={styles.topics} />
           <div className={styles.buttons}>
             <button
               type="button"
