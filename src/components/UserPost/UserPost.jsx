@@ -28,8 +28,6 @@ export default function UserPost() {
 
         const post = await res.json();
 
-        console.log(post);
-
         setPost(post);
       } catch (error) {
         toast.error(error.message);
