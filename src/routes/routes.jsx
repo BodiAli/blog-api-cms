@@ -5,6 +5,7 @@ import Login from "../pages/LoginPage/Login.jsx";
 import NotFound from "../pages/NotFoundPage/NotFound.jsx";
 import CreatePost from "../components/CreatePost/CreatePost.jsx";
 import UserPosts from "../components/UserPosts/UserPosts.jsx";
+import UserPost from "../components/UserPost/UserPost.jsx";
 import ErrorHandler from "../components/ErrorHandler/ErrorHandler.jsx";
 
 const routes = [
@@ -27,6 +28,10 @@ const routes = [
           {
             path: "create-post",
             Component: CreatePost,
+          },
+          {
+            path: "users/posts/:postId",
+            Component: UserPost,
           },
         ],
       },
