@@ -1,0 +1,84 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UserPost component > Should render post data 1`] = `
+<div>
+  <main
+    class="_main_d6c027"
+  >
+    <div
+      class="_textContainer1_d6c027"
+    >
+      <h2
+        class="_title_d6c027"
+      >
+        Post 1
+      </h2>
+      <p
+        class="_date_d6c027"
+      >
+        <strong>
+          Created at: 
+        </strong>
+        2025/4/27, 6:3:2
+      </p>
+      <p
+        class="_date_d6c027"
+      >
+        <strong>
+          Last updated: 
+        </strong>
+        1 day ago
+      </p>
+    </div>
+    <div
+      class="_textContainer2_d6c027"
+    >
+      <p
+        class="_likes_d6c027"
+      >
+        <strong>
+          Likes:
+        </strong>
+         
+        5
+      </p>
+      <p
+        class="_published_d6c027"
+      >
+        Published
+      </p>
+    </div>
+    <div
+      class="_textContainer3_d6c027"
+    >
+      <p>
+        Topics:
+      </p>
+      <div>
+        <p>
+          Topic 1
+        </p>
+        <p>
+          Topic 2
+        </p>
+      </div>
+    </div>
+    <div
+      class="_postContent_d6c027"
+    >
+      <img
+        alt="Post cover"
+        src="/src/assets/images/no-image.svg"
+      />
+      <div
+        class="_postContentHtml_d6c027"
+      >
+        Post content
+      </div>
+    </div>
+    <div
+      class="_commentsContainer_d6c027"
+    />
+  </main>
+</div>
+`;
