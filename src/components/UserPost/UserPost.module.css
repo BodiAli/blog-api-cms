@@ -83,6 +83,7 @@
 
 .postContent > img {
   width: 80%;
+  border-radius: 5px;
   align-self: center;
 }
 
