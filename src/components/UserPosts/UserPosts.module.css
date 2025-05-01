@@ -103,4 +103,5 @@
 
 .pagination > .disabled {
   background-color: rgba(72, 130, 180, 0.463);
+  cursor: not-allowed;
 }
