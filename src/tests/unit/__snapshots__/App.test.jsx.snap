@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`App component > Should render user profile and posts with expected management buttons and pagination 1`] = `
+exports[`App component > Should render header component with user data, and posts with expected management buttons and pagination 1`] = `
 <div>
   <header
     class="_header_63c2ea"
