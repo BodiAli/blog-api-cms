@@ -28,6 +28,14 @@ window.fetch = vi.fn(() => {
   });
 });
 
+vi.mock("date-fns", async (importOriginal) => {
+  const result = await importOriginal();
+  return {
+    ...result,
+    formatDistanceToNow: vi.fn(() => "1 day ago"),
+  };
+});
+
 const Stub = createRoutesStub([
   {
     path: "/users/posts/:postId",
