@@ -26,7 +26,7 @@ export default function Header() {
         <NavLink to="create-post" viewTransition>
           Create post
         </NavLink>
-        <a href="#">Public</a>
+        <a href={import.meta.env.VITE_PUBLIC_URL}>Public</a>
       </nav>
       <div className={styles.profile}>
         <p>
