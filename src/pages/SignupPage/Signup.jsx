@@ -31,6 +31,9 @@ export default function Signup() {
           const { errors: badRequestErrors } = await res.json();
 
           setErrors(badRequestErrors);
+          window.scrollTo({
+            top: 0,
+          });
           return;
         }
 

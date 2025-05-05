@@ -106,3 +106,9 @@
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
+
+@media (max-width: 800px) {
+  .formContent {
+    width: 100%;
+  }
+}
