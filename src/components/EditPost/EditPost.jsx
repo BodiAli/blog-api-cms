@@ -128,7 +128,7 @@ export default function EditPost() {
             />
           </div>
           <label>
-            Cover image (optional)
+            Cover image (optional -- max size 3MB)
             <input type="file" name="postImage" accept="image/*" />
           </label>
           <Topics initialTopics={post?.Topics} className={styles.topics} />

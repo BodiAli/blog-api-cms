@@ -89,7 +89,7 @@ export default function CreatePost() {
             />
           </div>
           <label>
-            Cover image (optional)
+            Cover image (optional -- max size 3MB)
             <input type="file" name="postImage" accept="image/*" />
           </label>
           <Topics className={styles.topics} />
