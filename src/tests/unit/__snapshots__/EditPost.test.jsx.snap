@@ -34,7 +34,7 @@ exports[`EditPost component > Should render EditPost component with all inputs f
         Create post
       </a>
       <a
-        href="#"
+        href=""
       >
         Public
       </a>

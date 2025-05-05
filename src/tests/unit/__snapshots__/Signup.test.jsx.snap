@@ -59,6 +59,7 @@ exports[`Sign up page component > should render signup form with expected tags a
         <label>
           Email
           <input
+            autocomplete="email"
             name="email"
             placeholder="name@email.com"
             required=""

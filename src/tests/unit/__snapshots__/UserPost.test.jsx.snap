@@ -80,79 +80,90 @@ exports[`UserPost component > Should render post data 1`] = `
       class="_commentsContainer_d6c027"
     >
       <div
-        class="_card_ec5f2a"
+        class="_headingContainer_d6c027"
+      >
+        <h3>
+          Comments
+        </h3>
+      </div>
+      <div
+        class="_commentsCardsContainer_d6c027"
       >
         <div
-          class="_container1_ec5f2a"
+          class="_card_ec5f2a"
         >
           <div
-            class="_commentUserInfo_ec5f2a"
+            class="_container1_ec5f2a"
           >
-            <img
-              alt="Bodi Ali's profile picture"
-              src="imageUrl"
-            />
-            <p
-              class="_name_ec5f2a"
-            >
-              Bodi
-               
-              Ali
-            </p>
-            <p
-              class="_createdAt_ec5f2a"
-            >
-              1 day ago
-            </p>
-          </div>
-          <div
-            class="_dropdown_ec5f2a"
-          >
-            <button
-              class="_dropBtn_ec5f2a"
+            <div
+              class="_commentUserInfo_ec5f2a"
             >
               <img
-                alt="options"
-                src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3e%3cpath%20d='M12,16A2,2%200%200,1%2014,18A2,2%200%200,1%2012,20A2,2%200%200,1%2010,18A2,2%200%200,1%2012,16M12,10A2,2%200%200,1%2014,12A2,2%200%200,1%2012,14A2,2%200%200,1%2010,12A2,2%200%200,1%2012,10M12,4A2,2%200%200,1%2014,6A2,2%200%200,1%2012,8A2,2%200%200,1%2010,6A2,2%200%200,1%2012,4Z'%20/%3e%3c/svg%3e"
+                alt="Bodi Ali's profile picture"
+                src="imageUrl"
               />
-            </button>
+              <p
+                class="_name_ec5f2a"
+              >
+                Bodi
+                 
+                Ali
+              </p>
+              <p
+                class="_createdAt_ec5f2a"
+              >
+                1 day ago
+              </p>
+            </div>
             <div
-              class="_dropdownContent_ec5f2a"
+              class="_dropdown_ec5f2a"
             >
-              <div
-                class="_folderDelete_ec5f2a"
+              <button
+                class="_dropBtn_ec5f2a"
               >
                 <img
-                  alt="delete comment"
-                  src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3e%3cpath%20d='M9,3V4H4V6H5V19A2,2%200%200,0%207,21H17A2,2%200%200,0%2019,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z'%20/%3e%3c/svg%3e"
+                  alt="options"
+                  src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3e%3cpath%20d='M12,16A2,2%200%200,1%2014,18A2,2%200%200,1%2012,20A2,2%200%200,1%2010,18A2,2%200%200,1%2012,16M12,10A2,2%200%200,1%2014,12A2,2%200%200,1%2012,14A2,2%200%200,1%2010,12A2,2%200%200,1%2012,10M12,4A2,2%200%200,1%2014,6A2,2%200%200,1%2012,8A2,2%200%200,1%2010,6A2,2%200%200,1%2012,4Z'%20/%3e%3c/svg%3e"
                 />
-                <button>
-                  Delete
-                </button>
+              </button>
+              <div
+                class="_dropdownContent_ec5f2a"
+              >
+                <div
+                  class="_folderDelete_ec5f2a"
+                >
+                  <img
+                    alt="delete comment"
+                    src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3e%3cpath%20d='M9,3V4H4V6H5V19A2,2%200%200,0%207,21H17A2,2%200%200,0%2019,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z'%20/%3e%3c/svg%3e"
+                  />
+                  <button>
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          class="_container2_ec5f2a"
-        >
-          <p>
-            Comment content
-          </p>
-        </div>
-        <div
-          class="_likeContainer_ec5f2a"
-        >
-          <p
-            class="_likes_ec5f2a"
-            data-testid="likes-count-comment"
+          <div
+            class="_container2_ec5f2a"
           >
-            <strong>
-              Likes:
-            </strong>
-             
-            1
-          </p>
+            <p>
+              Comment content
+            </p>
+          </div>
+          <div
+            class="_likeContainer_ec5f2a"
+          >
+            <p
+              class="_likes_ec5f2a"
+              data-testid="likes-count-comment"
+            >
+              <strong>
+                Likes:
+              </strong>
+               
+              1
+            </p>
+          </div>
         </div>
       </div>
     </div>

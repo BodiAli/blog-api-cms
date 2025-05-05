@@ -35,7 +35,7 @@ exports[`App component > Should render header component with user data, and post
         Create post
       </a>
       <a
-        href="#"
+        href=""
       >
         Public
       </a>

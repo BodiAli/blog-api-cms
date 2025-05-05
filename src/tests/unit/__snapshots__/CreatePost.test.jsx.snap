@@ -35,7 +35,7 @@ exports[`CreatePost component > Should render form with inputs and TinyMCE libra
         Create post
       </a>
       <a
-        href="#"
+        href=""
       >
         Public
       </a>
