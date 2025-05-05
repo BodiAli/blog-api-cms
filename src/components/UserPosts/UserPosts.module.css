@@ -18,7 +18,6 @@
 }
 
 .dialog {
-  top: 0;
   margin: 2rem auto;
   width: 70%;
   padding: 1rem;
@@ -104,4 +103,14 @@
 .pagination > .disabled {
   background-color: rgba(72, 130, 180, 0.463);
   cursor: not-allowed;
+}
+
+@media (max-width: 800px) {
+  .dialog {
+    width: 100%;
+  }
+
+  .dialogContent > p {
+    font-size: 1.4rem;
+  }
 }

@@ -55,7 +55,9 @@
 .topics > div:first-child {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .topics > div:first-child > label {
@@ -106,4 +108,10 @@
 
 .formContent > button {
   margin-top: 0.5rem;
+}
+
+@media (max-width: 800px) {
+  .formContent {
+    width: 100%;
+  }
 }

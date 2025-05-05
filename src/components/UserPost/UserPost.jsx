@@ -108,9 +108,14 @@ export default function UserPost() {
       </div>
 
       <div className={styles.commentsContainer}>
-        {post?.Comments.map((comment) => {
-          return <CommentCard key={comment.id} comment={comment} onDelete={handleDeleteComment} />;
-        })}
+        <div className={styles.headingContainer}>
+          <h3>Comments</h3>
+        </div>
+        <div className={styles.commentsCardsContainer}>
+          {post?.Comments.map((comment) => {
+            return <CommentCard key={comment.id} comment={comment} onDelete={handleDeleteComment} />;
+          })}
+        </div>
       </div>
     </main>
   );

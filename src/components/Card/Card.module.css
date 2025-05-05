@@ -11,6 +11,7 @@
 .text {
   display: grid;
   grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
 .textContainer1 {
@@ -155,4 +156,14 @@ button.published + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+@media (max-width: 550px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .viewPost {
+    width: 30px;
+  }
 }
