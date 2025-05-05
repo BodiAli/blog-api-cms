@@ -71,7 +71,7 @@ export default function Login() {
           <h1>The Log Blog</h1>
         </div>
         <div className={styles.loginHeader}>
-          <h2>Log in to your account</h2>
+          <h2>Log in to your account (Content management)</h2>
         </div>
       </div>
       <Form onSubmit={handleUserLogin}>
