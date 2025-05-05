@@ -12,8 +12,6 @@ export function useIsUserLoggedIn() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    console.log("Context token", token);
-
     async function fetchUser() {
       try {
         const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/validate`, {
@@ -21,7 +19,6 @@ export function useIsUserLoggedIn() {
             Authorization: token,
           },
         });
-        console.log("Context res", res);
 
         if (res.ok) {
           setSignedIn(true);
