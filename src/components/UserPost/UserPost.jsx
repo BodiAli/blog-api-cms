@@ -4,6 +4,7 @@ import parse from "html-react-parser";
 import { toast } from "react-toastify";
 import { format, formatDistanceToNow } from "date-fns";
 import Loader from "../Loader/Loader";
+import CommentCard from "../CommentCard/CommentCard";
 import noImage from "../../assets/images/no-image.svg";
 import styles from "./UserPost.module.css";
 
@@ -12,6 +13,34 @@ export default function UserPost() {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  async function handleDeleteComment(comment) {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/posts/${comment.postId}/comments/${comment.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Failed to delete comment please try again later");
+      }
+
+      toast.success("Comment deleted successfully!");
+      setPost({
+        ...post,
+        Comments: post.Comments.filter((commentValue) => {
+          return commentValue.id !== comment.id;
+        }),
+      });
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
 
   useEffect(() => {
     async function fetchUserPost() {
@@ -48,7 +77,7 @@ export default function UserPost() {
         <h2 className={styles.title}>{post?.title}</h2>
         <p className={styles.date}>
           <strong>Created at: </strong>
-          {post && format(post.createdAt, "y/M/d, H:m:s")}
+          {post && format(post.createdAt, "MMM d, y, H:m:s")}
         </p>
         <p className={styles.date}>
           <strong>Last updated: </strong>
@@ -78,7 +107,11 @@ export default function UserPost() {
         <div className={styles.postContentHtml}>{post && parse(post.content)}</div>
       </div>
 
-      <div className={styles.commentsContainer}></div>
+      <div className={styles.commentsContainer}>
+        {post?.Comments.map((comment) => {
+          return <CommentCard key={comment.id} comment={comment} onDelete={handleDeleteComment} />;
+        })}
+      </div>
     </main>
   );
 }

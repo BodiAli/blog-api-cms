@@ -1,0 +1,93 @@
+.card {
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  border-radius: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.514);
+  position: relative;
+}
+
+.container1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.container1 > .commentUserInfo {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.container1 img {
+  width: 60px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 1.1rem;
+}
+
+.createdAt {
+  color: #0000009c;
+}
+
+.dropdown {
+  justify-self: end;
+}
+
+.dropdown > button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: 150ms filter;
+  &:hover {
+    filter: invert(0.5);
+  }
+}
+
+.dropdown img {
+  width: 30px;
+}
+
+.dropdownContent {
+  right: 0;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 25%;
+}
+
+.dropdownContent > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: 200ms background-color;
+  &:hover {
+    background-color: gainsboro;
+  }
+}
+
+.dropdownContent button {
+  flex: 1;
+  text-align: start;
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+.likeContainer strong {
+  font-weight: 500;
+}
