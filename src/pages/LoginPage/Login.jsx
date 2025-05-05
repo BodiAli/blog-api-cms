@@ -83,7 +83,7 @@ export default function Login() {
         <div className={styles.formContent}>
           <label>
             Email
-            <input type="email" name="email" placeholder="name@email.com" required />
+            <input type="email" name="email" placeholder="name@email.com" autoComplete="email" required />
           </label>
           <label>
             Password

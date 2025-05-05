@@ -91,7 +91,7 @@ export default function Signup() {
           </label>
           <label>
             Email
-            <input type="email" name="email" placeholder="name@email.com" required />
+            <input type="email" name="email" placeholder="name@email.com" autoComplete="email" required />
           </label>
           <label>
             Password
