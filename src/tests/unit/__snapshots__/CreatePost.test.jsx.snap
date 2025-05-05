@@ -93,7 +93,7 @@ exports[`CreatePost component > Should render form with inputs and TinyMCE libra
           />
         </div>
         <label>
-          Cover image (optional)
+          Cover image (optional -- max size 3MB)
           <input
             accept="image/*"
             name="postImage"

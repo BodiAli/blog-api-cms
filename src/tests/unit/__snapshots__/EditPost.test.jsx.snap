@@ -94,7 +94,7 @@ exports[`EditPost component > Should render EditPost component with all inputs f
           />
         </div>
         <label>
-          Cover image (optional)
+          Cover image (optional -- max size 3MB)
           <input
             accept="image/*"
             name="postImage"
